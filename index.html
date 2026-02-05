@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VILLAN-X-MODS | NEON SYSTEM</title>
+    <style>
+        body { background: #050505; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
+        .container { width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 15px; }
+        
+        /* Main Card */
+        .card { 
+            background: #0d1117; 
+            border: 2px solid; 
+            border-image: linear-gradient(135deg, #00d2ff, #f00b51) 1; 
+            padding: 25px 20px; 
+            text-align: center; 
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+
+        /* LOGO WITH GLOWING CIRCLE FRAME */
+        .logo-frame {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 15px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-frame::before {
+            content: '';
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            border-radius: 50%;
+            border: 3px solid #00d2ff;
+            box-shadow: 0 0 20px #00d2ff, inset 0 0 10px #00d2ff;
+            animation: pulse 2s infinite;
+        }
+
+        .logo-container {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            overflow: hidden;
+            z-index: 2;
+            background: #000;
+            border: 2px solid #fff;
+        }
+
+        .logo-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        /* TITLE WITH RED NEON GLOW */
+        h1 { 
+            margin: 10px 0; 
+            font-size: 26px; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            color: #fff;
+            text-shadow: 0 0 5px #f00b51, 0 0 10px #f00b51, 0 0 20px #f00b51;
+        }
+
+        .sub-text { color: #00d2ff; font-size: 11px; font-weight: bold; letter-spacing: 3px; margin-bottom: 15px; }
+
+        .btn-gen {
+            width: 100%; padding: 16px; border: none; font-weight: bold; color: white;
+            background: linear-gradient(90deg, #f00b51, #3a7bd5);
+            cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(240, 11, 81, 0.5);
+        }
+
+        /* Result Box */
+        #resultBox { 
+            display: none; margin-top: 20px; padding: 15px; background: rgba(0,0,0,0.8); 
+            border: 1px dashed #00ff00; 
+            animation: pop 0.5s ease-out;
+        }
+        @keyframes pop { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+        #keyDisplay { font-size: 20px; color: #00ff00; font-weight: bold; display: block; margin-bottom: 12px; text-shadow: 0 0 10px #00ff00; }
+        .btn-copy { background: transparent; color: #00d2ff; border: 1px solid #00d2ff; padding: 10px; width: 100%; cursor: pointer; font-weight: bold; }
+
+        /* REAL-TIME LOGS */
+        .log-box { 
+            background: #000; padding: 12px; text-align: left; font-family: monospace; 
+            font-size: 10px; color: #00ff00; height: 90px; overflow: hidden; border: 1px solid #333;
+        }
+        .log-entry { margin-bottom: 3px; }
+
+        .social { display: block; text-decoration: none; color: white; padding: 12px; margin-top: 8px; font-weight: bold; text-align: center; border-radius: 4px; font-size: 13px; }
+        .tg { background: #0088cc; }
+        .yt { background: #ff0000; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <div style="position:absolute; top:10px; right:15px; color:#00ff00; font-size:9px; font-weight:bold; letter-spacing: 1px;">SYSTEM ACTIVE</div>
+        
+        <div class="logo-frame">
+            <div class="logo-container">
+                <img src="https://i.ibb.co/gxxBMvG/Picsart-26-02-04-11-40-59-981.png" alt="Logo">
+            </div>
+        </div>
+
+        <h1>𝚅𝙸𝙻𝙻𝙰𝙽 𝚇 𝙼𝙾𝙳𝚉 𝙻𝙾𝙶𝙸𝙽 𝙺𝙴𝚈</h1>
+        <div class="sub-text">𝐕𝐢𝐥𝐥𝐚𝐧 𝐏𝐫𝐞𝐧𝐢𝐮𝐦 𝐊𝐞𝐲 𝐖𝐞𝐛𝐬𝐢𝐭𝐞</div>
+    </div>
+
+    <div class="card">
+        <h3 style="margin:0; font-size: 16px;">SECURE VERIFICATION</h3>
+        <p id="instruction" style="font-size: 10px; color: #888; margin: 10px 0;">Complete 1 Step to Unlock your Premium Key.</p>
+        <button class="btn-gen" id="actionBtn">Get Key</button>
+
+        <div id="resultBox">
+            <span style="font-size:10px; color:#888;">YOUR KEY IS READY:</span>
+            <div id="keyDisplay">VILLAN-X-MODS-XXXX-H12</div>
+            <button class="btn-copy" id="copyBtn">COPY TO CLIPBOARD</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div style="text-align: left; font-size: 11px; color: #f00b51; margin-bottom: 5px; font-weight: bold;">[SYSTEM LOG]</div>
+        <div class="log-box" id="realTimeLogs">
+            <div class="log-entry">> Initializing security...</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://t.me/VILLIANMOD" class="social tg">JOIN TELEGRAM</a>
+        <a href="https://www.youtube.com/@VILLANXMODS" class="social yt">SUBSCRIBE YOUTUBE</a>
+    </div>
+</div>
+
+<script>
+    const actionBtn = document.getElementById('actionBtn');
+    const resultBox = document.getElementById('resultBox');
+    const keyDisplay = document.getElementById('keyDisplay');
+    const logBox = document.getElementById('realTimeLogs');
+
+    // Real-Time Log Messages
+    const logs = ["Checking IP...", "Firewall Hooked...", "Database: VILLAN_DB Connected", "Anti-Cheat: Bypassed", "Generating Secure Token...", "Protocol: AES-256 Active"];
+    let i = 0;
+    setInterval(() => {
+        if (i < logs.length) {
+            const div = document.createElement('div');
+            div.className = 'log-entry';
+            div.innerText = "> " + logs[i++];
+            logBox.appendChild(div);
+        }
+    }, 2000);
+
+    // URL Logic
+    const SHORTLINK = "Kundan"; // Apna link yahan dalein
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    if (urlParams.has('verified')) {
+        actionBtn.style.display = "none";
+        resultBox.style.display = "block";
+        const randomID = Math.random().toString(36).substring(2, 6).toUpperCase();
+        keyDisplay.innerText = `VILLAN-X-MODS-${randomID}-H12`;
+    }
+
+    actionBtn.addEventListener('click', () => {
+        actionBtn.innerText = "Verify wait...";
+        setTimeout(() => { window.location.href = SHORTLINK; }, 1200);
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', function() {
+        const text = keyDisplay.innerText;
+        const input = document.createElement('input');
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        this.innerText = "✅ COPIED!";
+        setTimeout(() => { this.innerText = "COPY TO CLIPBOARD"; }, 2000);
+    });
+</script>
+</body>
+</html>
